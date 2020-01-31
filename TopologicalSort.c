@@ -4,8 +4,7 @@
 const int MAX = 10;
 void TopoSort(int a[MAX][MAX],int n);
 
-int main()
-{
+int main(){
 	int a[MAX][MAX],n;
 	int i,j;
 	printf("\nEnter the no of elements\n");
@@ -20,25 +19,20 @@ int main()
 	return 0;
 }
 
-void TopoSort(int a[MAX][MAX],int n)
-{
+void TopoSort(int a[MAX][MAX],int n){
 	int i,j,k=0;
 	int in[MAX],out[MAX],stack[MAX],top=-1;
 	
-	for(i=0;i<n;i++)
-	{
+	for(i=0;i<n;i++){
 		in[i]=0;
 		for(j=0;j<n;j++)
 			if(a[j][i]==1)
 				in[i]++;
 	}
 	
-	while(1)
-	{
-		for(i=0;i<n;i++)
-		{
-			if(in[i]==0)
-			{
+	while(1){
+		for(i=0;i<n;i++){
+			if(in[i]==0){
 				stack[++top]=i;
 				in[i]=-1;
 			}
@@ -48,8 +42,7 @@ void TopoSort(int a[MAX][MAX],int n)
 			
 		out[k]=stack[top--];
 		
-		for(i=0;i<n;i++)
-		{
+		for(i=0;i<n;i++){
 			if(a[out[k]][i]==1)
 				in[i]--;
 		}
