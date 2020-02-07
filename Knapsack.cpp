@@ -8,7 +8,8 @@ int max(int a, int b) {
 
 
 int knapsack(int n, int wt[], int val[], int W) { 
-	int i, w; 
+	int i, w,j; 
+	int subset[n];
 	int K[n+1][W+1]; 
 	for (i = 0; i <= n; i++){ 
 	 
@@ -21,7 +22,22 @@ int knapsack(int n, int wt[], int val[], int W) {
 					K[i][w] = K[i-1][w]; 
 		}
 	} 
-	return K[n][W]; 
+	for(int i=1;i<=n;i++)
+		 subset[i] = 0;
+	i=n;
+	j=W;
+	while(i>=1 && j>=1){
+		if(K[i][j]!=K[i-1][j]){
+			subset[i]=1;
+			j=j-wt[i];
+		
+		}
+		i=i-1;
+	}
+	cout<<K[n][W];
+	cout<<endl;
+	for(int i=0;i<n;i++)
+		cout<<subset[i]<<" ";
 } 
 
 int main() { 
@@ -34,6 +50,6 @@ int main() {
 	for(int i=0;i<n;i++){
 		cin>>pr[i];
 	}
-	cout<<knapsack(n,w,pr,c);
+	knapsack(n,w,pr,c);
 	return 0;
 } 
